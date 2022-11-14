@@ -70,7 +70,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with: 
           name: my-artifact
-          path: ../bin/Koivisto
+          path: ./bin/Koivisto
 
       - name: Check bench matches commit message
         if: matrix.target == 'openbench' && github.event_name == 'push'

@@ -65,12 +65,6 @@ jobs:
         run: |
          cd src_files
          make ${{ matrix.target }} CXX=${{ matrix.config.compiler }} EXE=../bin/Koivisto
-         
-        
-      - uses: actions/upload-artifact@v3
-        with:
-            name: my-artifact
-            path: bin
 
       - name: Check bench matches commit message
         if: matrix.target == 'openbench' && github.event_name == 'push'
@@ -81,3 +75,8 @@ jobs:
           ./Koivisto bench > bench.txt
           actual_bench=$(grep -i OVERALL: bench.txt | awk -F'[^0-9]+' '{ print $2 }')
           if [[ "$actual_bench" != "$commit_bench" ]]; then echo "Incorrect bench, got '$actual_bench' expected '$commit_bench'" && exit 1; fi
+          
+      - uses: actions/upload-artifact@v3
+        with:
+          name: my-artifact
+          path: bin

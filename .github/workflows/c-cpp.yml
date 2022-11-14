@@ -66,8 +66,9 @@ jobs:
          cd src_files
          make ${{ matrix.target }} CXX=${{ matrix.config.compiler }} EXE=../bin/Koivisto
          
-         - uses: actions/upload-artifact@v3
-            with:
+        
+      - uses: actions/upload-artifact@v3
+        with:
             name: my-artifact
             path: bin
 

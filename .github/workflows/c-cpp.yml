@@ -66,11 +66,10 @@ jobs:
          cd src_files
          make ${{ matrix.target }} CXX=${{ matrix.config.compiler }} EXE=../bin/Koivisto
          
-      - name: Upload an Entire Directory 
-        uses: actions/upload-artifact@v3
-        with: 
-          name: my-artifact
-          path: ./bin/Koivisto
+         - uses: actions/upload-artifact@v3
+            with:
+            name: my-artifact
+            path: bin
 
       - name: Check bench matches commit message
         if: matrix.target == 'openbench' && github.event_name == 'push'
